@@ -1,25 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import { Layout } from 'antd';
+import Navbar from './components/navbar/Navbar';
+import Dashboard from './components/dashboard/Dashboard';
+import ProjectDetails from './components/project/ProjectDetails';
+import CreateProject from './components/project/CreateProject';
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
+
+const { Header, Footer, Content } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Layout>
+          <Header style={{ backgroundColor: 'white' }}>
+            <Navbar />
+          </Header>
+          <Content style={{ padding: '5vh 15vw' }}>
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/project/:id" component={ProjectDetails} />
+              <Route path="/signin" component={SignIn} />
+              <Route path="/signup" component={SignUp} />
+              <Route path="/createproject" component={CreateProject} />
+            </Switch>
+          </Content>
+          <Footer>Footer</Footer>
+        </Layout>
+      </div>
+    </BrowserRouter>
   );
 }
 
