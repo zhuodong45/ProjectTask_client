@@ -1,21 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Modal } from 'antd';
-import WrappedCreateProjectForm from './form/CreateProjectForm';
+import CreateProjectForm from './form/CreateProjectForm';
 
 const CreateProjectModal = () => {
-  const visible = useSelector(state => state.project.showCreateModal);
+    const visible = useSelector(state => state.project.showCreateModal);
 
-  return (
-    <Modal
-      title="Create Project"
-      visible={visible}
-      footer={null}
-      closable={false}
-    >
-      <WrappedCreateProjectForm />
-    </Modal>
-  );
+    return (
+        <Modal
+            title="Create Project"
+            visible={visible}
+            footer={null}
+            closable={false}
+        >
+            <CreateProjectForm />
+        </Modal>
+    );
 };
 
 export default CreateProjectModal;

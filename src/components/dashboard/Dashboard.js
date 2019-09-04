@@ -4,18 +4,18 @@ import Notification from './Notification';
 import ProjectList from '../project/ProjectList';
 
 const Dashboard = () => {
-  return (
-    <div>
-      <Row>
-        <Col span={12}>
-          <ProjectList />
-        </Col>
-        <Col span={11} offset={1}>
-          <Notification />
-        </Col>
-      </Row>
-    </div>
-  );
+    return (
+        <div>
+            <Row>
+                <Col span={12}>
+                    <ProjectList />
+                </Col>
+                <Col span={11} offset={1}>
+                    <Notification />
+                </Col>
+            </Row>
+        </div>
+    );
 };
 
 export default Dashboard;

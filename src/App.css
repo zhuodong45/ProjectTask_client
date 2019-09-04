@@ -1,11 +1,21 @@
 @import '~antd/dist/antd.css';
 
 .logo {
-  font-size: 2vh;
-  color: dimgray;
-  float: left;
+    font-size: 2vh;
+    color: dimgray;
+    float: left;
 }
 
 .create_proejct {
-  color: white;
+    color: white;
+}
+
+.formContainer {
+    min-width: 300px;
+    width: 40vw;
+    margin: auto;
+    height: 300px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 15px;
+    padding: 20px;
 }

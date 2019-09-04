@@ -5,25 +5,25 @@ import ProjectSummary from './ProjectSummary';
 import { fetchProjects } from '../../store/action/projectAction';
 
 const ProjectList = () => {
-  const projects = useSelector(state => state.project.projects);
-  const dispatch = useDispatch();
+    const projects = useSelector(state => state.project.projects);
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchProjects());
+    }, [dispatch]);
 
-  return (
-    <div>
-      {projects &&
-        projects.map(project => {
-          return (
-            <Link to={`/project/${project.id}`} key={project.id}>
-              <ProjectSummary project={project} />
-            </Link>
-          );
-        })}
-    </div>
-  );
+    return (
+        <div>
+            {projects &&
+                projects.map(project => {
+                    return (
+                        <Link to={`/project/${project.id}`} key={project.id}>
+                            <ProjectSummary project={project} />
+                        </Link>
+                    );
+                })}
+        </div>
+    );
 };
 
 export default ProjectList;

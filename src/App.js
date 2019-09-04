@@ -12,27 +12,35 @@ import SignUp from './components/auth/SignUp';
 const { Header, Footer, Content } = Layout;
 
 function App() {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <Layout>
-          <Header style={{ backgroundColor: 'white' }}>
-            <Navbar />
-          </Header>
-          <Content style={{ padding: '5vh 15vw' }}>
-            <Switch>
-              <Route exact path="/" component={Dashboard} />
-              <Route path="/project/:id" component={ProjectDetails} />
-              <Route path="/signin" component={SignIn} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="/createproject" component={CreateProject} />
-            </Switch>
-          </Content>
-          <Footer>Footer</Footer>
-        </Layout>
-      </div>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <div className="App">
+                <Layout>
+                    <Header style={{ backgroundColor: 'white' }}>
+                        <Navbar />
+                    </Header>
+                    <Content
+                        style={{ padding: '5vh 15vw', minHeight: '100vh' }}
+                    >
+                        <Switch>
+                            <Route exact path="/" component={Dashboard} />
+                            <Route
+                                path="/project/:id"
+                                component={ProjectDetails}
+                            />
+                            <Route path="/signin" component={SignIn} />
+                            <Route path="/signup" component={SignUp} />
+                            <Route
+                                path="/createproject"
+                                component={CreateProject}
+                            />
+                        </Switch>
+                    </Content>
+                    <Footer>Footer</Footer>
+                </Layout>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;

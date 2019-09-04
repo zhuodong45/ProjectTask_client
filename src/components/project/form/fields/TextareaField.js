@@ -6,7 +6,7 @@ const Capitalize = str => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-const InputField = ({
+const TextareaField = ({
   field, // { name, value, onChange, onBlur }
   form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   ...props
@@ -18,17 +18,14 @@ const InputField = ({
       validateStatus={errMsg ? 'error' : ''}
       label={Capitalize(field.name)}
     >
-      <Input {...field} {...props} />
+      <Input.TextArea {...field} {...props} />
     </Form.Item>
   );
 };
 
-InputField.propTypes = {
+TextareaField.propTypes = {
   field: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired
+    name: PropTypes.string.isRequired
   }).isRequired,
   form: PropTypes.shape({
     touched: PropTypes.object.isRequired,
@@ -36,4 +33,4 @@ InputField.propTypes = {
   }).isRequired
 };
 
-export default InputField;
+export default TextareaField;

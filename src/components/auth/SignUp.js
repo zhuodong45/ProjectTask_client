@@ -1,55 +1,127 @@
 import React, { useState } from 'react';
+import { Formik, Form } from 'formik';
+import { Form as AntForm, Input, Button } from 'antd';
+import { SignUpValidation } from '../project/form/Validation';
 
 const SignUp = () => {
-  const [user, setUser] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  });
+    const [user, setUser] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+    });
 
-  const handleChange = e => {
-    const { id, value } = e.target;
-    setUser({ ...user, [id]: value });
-  };
+    const onSubmit = (values, { setSubmitting }) => {
+        console.log(values);
+        setSubmitting(false);
+    };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(user);
-  };
+    return (
+        <Formik
+            initialValues={user}
+            validate={SignUpValidation}
+            onSubmit={onSubmit}
+        >
+            {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                isSubmitting
+                /* and other goodies */
+            }) => {
+                /* override handleChange */
+                const onChange = e => {
+                    const { name, value } = e.target;
+                    setUser({ ...user, [name]: value });
+                    handleChange(e);
+                };
 
-  return (
-    <div className="container">
-      <form className="white" onSubmit={e => handleSubmit(e)}>
-        <h5 className="grey-text text-darken-3">Sign Up</h5>
-        <div className="input-field">
-          <label htmlFor="firstName">First Name</label>
-          <input type="text" id="firstName" onChange={e => handleChange(e)} />
-        </div>
-        <div className="input-field">
-          <label htmlFor="lastName">Lase Name</label>
-          <input type="text" id="lastName" onChange={e => handleChange(e)} />
-        </div>
-        <div className="input-field">
-          <label htmlFor="email">email</label>
-          <input type="email" id="email" onChange={e => handleChange(e)} />
-        </div>
-        <div className="input-field">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            onChange={e => handleChange(e)}
-          />
-        </div>
-        <div className="input-field">
-          <button type="submit" className="btn pink lighten-1 z-depth-0">
-            Sign In
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+                return (
+                    <Form>
+                        <AntForm.Item
+                            help={touched.email && errors.email}
+                            validateStatus={
+                                touched.email && errors.email ? 'error' : ''
+                            }
+                            label="Email"
+                        >
+                            <Input
+                                type="email"
+                                name="email"
+                                onChange={onChange}
+                                onBlur={handleBlur}
+                                value={values.email}
+                            />
+                        </AntForm.Item>
+
+                        <AntForm.Item
+                            help={touched.password && errors.password}
+                            validateStatus={
+                                touched.password && errors.password
+                                    ? 'error'
+                                    : ''
+                            }
+                            label="Password"
+                        >
+                            <Input
+                                type="password"
+                                name="password"
+                                onChange={onChange}
+                                onBlur={handleBlur}
+                                value={values.password}
+                            />
+                        </AntForm.Item>
+
+                        <AntForm.Item
+                            help={touched.firstName && errors.firstName}
+                            validateStatus={
+                                touched.firstName && errors.firstName
+                                    ? 'error'
+                                    : ''
+                            }
+                            label="First Name"
+                        >
+                            <Input
+                                type="text"
+                                name="firstName"
+                                onChange={onChange}
+                                onBlur={handleBlur}
+                                value={values.firstName}
+                            />
+                        </AntForm.Item>
+
+                        <AntForm.Item
+                            help={touched.lastName && errors.lastName}
+                            validateStatus={
+                                touched.lastName && errors.lastName
+                                    ? 'error'
+                                    : ''
+                            }
+                            label="Last Name"
+                        >
+                            <Input
+                                type="text"
+                                name="lastName"
+                                onChange={onChange}
+                                onBlur={handleBlur}
+                                value={values.lastName}
+                            />
+                        </AntForm.Item>
+
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            disabled={isSubmitting}
+                        >
+                            Sign Up
+                        </Button>
+                    </Form>
+                );
+            }}
+        </Formik>
+    );
 };
 
 export default SignUp;
